@@ -1,9 +1,9 @@
 # Projeto Spring boot
 esse projeto, foi desenvolvido como uma forma de ententer as funcionalidades do FrameWork Spring.
 # Bibliotecas usadas
-Spring WEB
-Spring MysqlConector
-Spring JPA
+Spring WEB,
+Spring MysqlConector,
+Spring JPA,
 Spring JDBC
 # Ide de desenvolvimento
 IntelliJ
