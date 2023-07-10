@@ -12,8 +12,8 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository FuncionarioRepository;
 
-    public ResponseEntity<?> cadastro(Funcionario funcionario){         //Regra para Identificar se o registro vai ter nome, sobre nome
-        if (funcionario.getNome().equals("")){
+    public ResponseEntity<?> cadastro(Funcionario funcionario){         //Método para cadastrar um Usuário,juntamente com regra para identificar se o campo
+        if (funcionario.getNome().equals("")){                          //nome ou sobrenome estão vazios
             String Mensage = "O nome não pode ser vazio";
             return new ResponseEntity<>(Mensage, HttpStatus.BAD_REQUEST);
         } else if (funcionario.getSobrenome().equals("")) {
@@ -21,6 +21,19 @@ public class FuncionarioService {
             return new ResponseEntity<>(Mensage,HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(FuncionarioRepository.save(funcionario),HttpStatus.CREATED);
+        }
+    }
+
+    public ResponseEntity<?> ListaRegistros(){                          //Método para pegar todos os registros de todos os usuários
+        return new ResponseEntity<>(FuncionarioRepository.findAll(),HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> SelecionarPeloID(Long id){                 //metodo para buscar um registro pelo ID
+        if (id == 0){
+            String Mensagem = "O registro informado não existe, por favor verifique o ID";
+            return new ResponseEntity(Mensagem,HttpStatus.BAD_REQUEST);
+        }else {
+            return new ResponseEntity<>(FuncionarioRepository.findById(id),HttpStatus.OK);
         }
     }
 }

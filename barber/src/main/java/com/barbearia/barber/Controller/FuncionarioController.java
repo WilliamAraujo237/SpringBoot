@@ -26,8 +26,8 @@ public class FuncionarioController {
     }
 */
     @RequestMapping(value = "/Formulario",method = RequestMethod.GET) //para pegar todos os registros da tabela de Funcionario
-    public @ResponseBody Iterable<Funcionario> lista(){
-        return funcionarioRepository.findAll();
+    public @ResponseBody ResponseEntity<?> lista(){
+        return FuncionarioService.ListaRegistros();
     }
 
     @RequestMapping(value = "/Formulario", method = RequestMethod.POST) //Para Salvar um registro na tabela de Funcionario
@@ -36,8 +36,8 @@ public class FuncionarioController {
     }
 
     @RequestMapping(value = "/Formulario/{id}",method = RequestMethod.GET) //para pegar um registro da tabela Funcionario
-    public @ResponseBody Optional<Funcionario> pesquisar(@PathVariable Long id){
-        return funcionarioRepository.findById(id);
+    public @ResponseBody ResponseEntity<?> pesquisar(@PathVariable Long id){
+        return FuncionarioService.SelecionarPeloID(id);
     }
     @RequestMapping(value = "/Formulario",method = RequestMethod.PUT) //para fazer Update de um registro da tabela de Funcionario
     public @ResponseBody Funcionario Modificar(@RequestBody Funcionario funcionario){
